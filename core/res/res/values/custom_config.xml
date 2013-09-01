@@ -27,4 +27,8 @@
     <!-- If this is true, key chords can be used to take a region screenshot on the device. -->
     <bool name="config_enableRegionScreenshotChord">true</bool>
 
+    <!-- The list of components which should be automatically disabled. -->
+    <string-array name="config_disabledComponents" translatable="false">
+    </string-array>
+
 </resources>
