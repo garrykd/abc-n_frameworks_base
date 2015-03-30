@@ -24,4 +24,9 @@
         <item>@string/quick_settings_location_gps_only_label</item>
         <item>@string/quick_settings_location_high_accuracy_label</item>
     </string-array>
+
+    <string-array name="telephony_data_type_sim">
+        <!--NETWORK_TYPE_HSPAP-->
+        <item>drawable/stat_sys_data_fully_connected_hp</item>
+    </string-array>
 </resources>
