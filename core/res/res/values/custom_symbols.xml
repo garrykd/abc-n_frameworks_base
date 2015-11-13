@@ -67,4 +67,7 @@
   <!-- Doze invert -->
   <java-symbol type="bool" name="config_invert_colors_on_doze" />
 
+  <!-- Vendor warning -->
+  <java-symbol type="string" name="system_error_vendorprint" />
+
 </resources>
