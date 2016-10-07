@@ -39,4 +39,10 @@
     <dimen name="recent_header_width">120dp</dimen>
     <dimen name="recent_text_size">17dp</dimen>
     <dimen name="recent_thumbnail_bottom_padding">3dp</dimen>
+
+    <!-- Status bar notification ticker -->
+    <dimen name="ticker_start_padding">6dp</dimen>
+    <dimen name="ticker_icon_end_margin">4dp</dimen>
+    <dimen name="ticker_text_top_padding">2dp</dimen>
+    <dimen name="ticker_text_end_padding">10dp</dimen>
 </resources>
