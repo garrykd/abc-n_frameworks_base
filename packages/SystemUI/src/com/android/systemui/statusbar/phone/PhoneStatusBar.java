@@ -408,6 +408,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     // last value sent to window manager
     private int mLastDispatchedSystemUiVisibility = ~View.SYSTEM_UI_FLAG_VISIBLE;
 
+    // to handle navbar toggle
+    private boolean doShowNavbar = false;
+    private boolean mNavigationBarAttached = false;
+
     DisplayMetrics mDisplayMetrics = new DisplayMetrics();
 
     // XXX: gesture research
@@ -486,6 +490,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             mContext.getContentResolver().registerContentObserver(Settings.Secure.getUriFor(
                     Settings.Secure.LOCK_QS_DISABLED),
                     false, this, UserHandle.USER_ALL);
+            mContext.getContentResolver().registerContentObserver(Settings.Secure.getUriFor(
+                    Settings.Secure.NAVIGATION_BAR_VISIBLE),
+                    false, this, UserHandle.USER_ALL);
             updateAll();
         }
 
@@ -496,6 +503,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         @Override
         public void onChange(boolean selfChange, Uri uri) {
+            if (uri.equals(Settings.Secure.getUriFor(
+                    Settings.Secure.NAVIGATION_BAR_VISIBLE))) {
+                updateNavigationBarVisibility();
+            }
             updateAll();
         }
     }
@@ -731,7 +742,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         // TODO: use MediaSessionManager.SessionListener to hook us up to future updates
         // in session state
 
-        addNavigationBar();
+        updateNavigationBarVisibility();
 
         mObserver.observe();
 
@@ -827,14 +838,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             mNotificationPanelDebugText.setVisibility(View.VISIBLE);
         }
 
-        try {
-            boolean showNav = mWindowManagerService.hasNavigationBar();
-            if (DEBUG) Log.v(TAG, "hasNavigationBar=" + showNav);
-            if (showNav) {
-                createNavigationBarView(context);
-            }
-        } catch (RemoteException ex) {
-            // no window manager? good luck with that
+        if (mNavigationBarView == null) {
+            createNavigationBarView(context);
         }
 
         mAssistManager = SystemUIFactory.getInstance().createAssistManager(this, context);
@@ -1467,6 +1472,23 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
     }
 
+    private void updateNavigationBarVisibility() {
+        final int mHasNavigationBar = mContext.getResources().getBoolean(
+                    com.android.internal.R.bool.config_showNavigationBar) ? 1 : 0;
+        doShowNavbar = Settings.Secure.getIntForUser(mContext.getContentResolver(),
+                    Settings.Secure.NAVIGATION_BAR_VISIBLE, mHasNavigationBar,
+                    UserHandle.USER_CURRENT) == 1;
+
+        if (doShowNavbar) {
+            addNavigationBar();
+        } else {
+            if (mNavigationBarAttached) {
+                mNavigationBarAttached = false;
+                mWindowManager.removeView(mNavigationBarView);
+            }
+        }
+    }
+
     private void prepareNavigationBarView() {
         mNavigationBarView.reorient();
 
@@ -1515,7 +1537,11 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         prepareNavigationBarView();
 
-        mWindowManager.addView(mNavigationBarView, getNavigationBarLayoutParams());
+
+        if (!mNavigationBarAttached) {
+            mNavigationBarAttached = true;
+            mWindowManager.addView(mNavigationBarView, getNavigationBarLayoutParams());
+        }
     }
 
     protected void repositionNavigationBar() {
@@ -2811,6 +2837,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
 
         mExpandedVisible = true;
+        if (mNavigationBarView != null && mNavigationBarAttached)
+            mNavigationBarView.setSlippery(true);
 
         // Expand the window to encompass the full screen in anticipation of the drag.
         // This is only possible to do atomically because the status bar is at the top of the screen!
