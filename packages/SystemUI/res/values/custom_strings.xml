@@ -44,7 +44,6 @@
     <string name="quick_settings_caffeine_label">Caffeine</string>
     <string name="accessibility_quick_settings_caffeine_off">Caffeine off</string>
     <string name="accessibility_quick_settings_caffeine_on">Caffeine on</string>
-
     <!-- Screenshot QS tile -->
     <string name="quick_settings_screenshot_label">Screenshot</string>
     <string name="quick_settings_region_screenshot_label">Partial screenshot</string>
@@ -52,17 +51,14 @@
     <!-- Reboot/Recovery QS Tile -->
     <string name="quick_settings_reboot_label">Reboot</string>
     <string name="quick_settings_reboot_recovery_label">Recovery</string>
-
      <!-- Sound QS Tile -->
      <string name="quick_settings_sound_label">Sound</string>
      <string name="quick_settings_sound_ring">Ring</string>
      <string name="quick_settings_sound_vibrate">Vibrate</string>
      <string name="quick_settings_sound_dnd">Do not disturb</string>
-
      <!-- Volume QS Tile -->
      <string name="accessibility_quick_settings_volume_panel">Volume</string>
      <string name="quick_settings_volume_panel_label">Volume</string>
-
     <!-- Nfc qs tile -->
     <string name="quick_settings_nfc_label">NFC</string>
     <!-- Content description of the NFC tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
@@ -73,7 +69,6 @@
     <string name="accessibility_quick_settings_nfc_changed_off">NFC turned off.</string>
     <!-- Announcement made when NFC changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_nfc_changed_on">NFC turned on.</string>
-
     <!-- ADB network tile -->
     <string name="quick_settings_adb_network">ADB network</string>
     <string name="quick_settings_network_adb_enabled_label">Enabled</string>
@@ -100,4 +95,8 @@
 
     <!-- Path data for big circle battery -->
     <string name="battery_bigcircle_path" translatable="false">M 12,0.9999999 C 18.075132,0.9999999 23,5.9248678 23,12 23,18.075132 18.075132,23 12,23 5.9248675,23 0.99999975,18.075132 0.99999975,12 0.99999975,5.9248678 5.9248675,0.9999999 12,0.9999999 Z</string>
+    <!-- Navbar toggle -->
+    <string name="quick_settings_navbar_label">Navbar</string>
+    <string name="quick_settings_navbar_enabled_label">Navbar</string>
+    <string name="quick_settings_navbar_disabled_label">No Navbar</string>
 </resources>
