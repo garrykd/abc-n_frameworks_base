@@ -46,4 +46,7 @@
     <!-- kill app long press back -->
     <integer name="config_backKillTimeout">3000</integer>
 
+    <!-- Single handed mode config -->
+    <bool name="single_hand_mode">true</bool>
+
 </resources>
