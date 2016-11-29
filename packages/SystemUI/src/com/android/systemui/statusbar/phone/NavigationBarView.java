@@ -204,6 +204,8 @@ public class NavigationBarView extends LinearLayout {
         mButtonDisatchers.put(R.id.recent_apps, new ButtonDispatcher(R.id.recent_apps));
         mButtonDisatchers.put(R.id.menu, new ButtonDispatcher(R.id.menu));
         mButtonDisatchers.put(R.id.ime_switcher, new ButtonDispatcher(R.id.ime_switcher));
+        mButtonDisatchers.put(R.id.ime_left, new ButtonDispatcher(R.id.ime_left));
+        mButtonDisatchers.put(R.id.ime_right, new ButtonDispatcher(R.id.ime_right));
     }
 
     public BarTransitions getBarTransitions() {
@@ -267,6 +269,14 @@ public class NavigationBarView extends LinearLayout {
 
     public ButtonDispatcher getImeSwitchButton() {
         return mButtonDisatchers.get(R.id.ime_switcher);
+    }
+
+    public ButtonDispatcher getImeLeftButton() {
+        return mButtonDisatchers.get(R.id.ime_left);
+    }
+
+    public ButtonDispatcher getImeRightButton() {
+        return mButtonDisatchers.get(R.id.ime_right);
     }
 
     private void updateCarModeIcons(Context ctx) {
@@ -350,6 +360,10 @@ public class NavigationBarView extends LinearLayout {
                 : getBackIcon(mUseCarModeUi, mVertical);
 
         getBackButton().setImageDrawable(backIcon);
+
+        // Only show IME left/right buttons if keyboard is visible
+        getImeLeftButton().setVisibility(backAlt ? View.VISIBLE : View.INVISIBLE);
+        getImeRightButton().setVisibility(backAlt ? View.VISIBLE : View.INVISIBLE);
 
         updateRecentsIcon();
 
