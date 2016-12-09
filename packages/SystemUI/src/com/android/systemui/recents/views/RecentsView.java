@@ -22,7 +22,6 @@ import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.app.ActivityOptions.OnAnimationStartedListener;
 import android.content.Context;
-import android.content.res.Configuration;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Outline;
@@ -31,7 +30,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.ArraySet;
 import android.util.AttributeSet;
-import android.view.Gravity;
 import android.view.AppTransitionAnimationSpec;
 import android.view.IAppTransitionAnimationSpecsFuture;
 import android.view.LayoutInflater;
@@ -43,7 +41,6 @@ import android.view.ViewPropertyAnimator;
 import android.view.WindowInsets;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.ImageButton;
 
 import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.MetricsProto.MetricsEvent;
@@ -102,8 +99,6 @@ public class RecentsView extends FrameLayout {
     private TaskStackView mTaskStackView;
     private TextView mStackActionButton;
     private TextView mEmptyView;
-    View mFloatingButton;
-    View mClearRecents;
 
     private boolean mAwaitingFirstLayout = true;
     private boolean mLastTaskLaunchedWasFreeform;
@@ -157,9 +152,6 @@ public class RecentsView extends FrameLayout {
         }
         mEmptyView = (TextView) inflater.inflate(R.layout.recents_empty, this, false);
         addView(mEmptyView);
-
-        mFloatingButton = ((View)getParent()).findViewById(R.id.floating_action_button);
-        mClearRecents = (ImageButton) ((View)getParent()).findViewById(R.id.clear_recents);
     }
 
     /**
@@ -211,14 +203,8 @@ public class RecentsView extends FrameLayout {
         // Update the top level view's visibilities
         if (stack.getTaskCount() > 0) {
             hideEmptyView();
-            if (mFloatingButton != null) {
-                mFloatingButton.setVisibility(View.VISIBLE);
-            }
         } else {
             showEmptyView(R.string.recents_empty_message);
-            if (mFloatingButton != null) {
-                mFloatingButton.setVisibility(View.GONE);
-            }
         }
     }
 
@@ -325,12 +311,6 @@ public class RecentsView extends FrameLayout {
         EventBus.getDefault().register(this, RecentsActivity.EVENT_BUS_PRIORITY + 1);
         EventBus.getDefault().register(mTouchHandler, RecentsActivity.EVENT_BUS_PRIORITY + 2);
         super.onAttachedToWindow();
-        mClearRecents.setVisibility(View.VISIBLE);
-        mClearRecents.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-            EventBus.getDefault().send(new DismissAllTaskViewsEvent());
-            }
-        });
     }
 
     @Override
@@ -367,27 +347,6 @@ public class RecentsView extends FrameLayout {
         }
 
         setMeasuredDimension(width, height);
-
-        if (mFloatingButton != null) {
-            FrameLayout.LayoutParams params = (FrameLayout.LayoutParams)
-                    mFloatingButton.getLayoutParams();
-            boolean isLandscape = mContext.getResources().getConfiguration().orientation
-                == Configuration.ORIENTATION_LANDSCAPE;
-            if (isLandscape) {
-                params.topMargin = mContext.getResources().
-                      getDimensionPixelSize(com.android.internal.R.dimen.status_bar_height);
-            } else {
-                params.topMargin = 2*(mContext.getResources().
-                    getDimensionPixelSize(com.android.internal.R.dimen.status_bar_height));
-            }
-            params.gravity = Gravity.BOTTOM | Gravity.RIGHT;
-            mFloatingButton.setLayoutParams(params);
-        } else {
-            mFloatingButton.setVisibility(View.GONE);
-        }
-        LayoutInflater inflater = LayoutInflater.from(mContext);
-        float cornerRadius = mContext.getResources().getDimensionPixelSize(
-                    R.dimen.recents_task_view_rounded_corners_radius);
     }
 
     /**
@@ -681,14 +640,48 @@ public class RecentsView extends FrameLayout {
      * Shows the stack action button.
      */
     private void showStackActionButton(final int duration, final boolean translate) {
-        return;
+        if (!RecentsDebugFlags.Static.EnableStackActionButton) {
+            return;
+        }
+
+        final ReferenceCountedTrigger postAnimationTrigger = new ReferenceCountedTrigger();
+        if (mStackActionButton.getVisibility() == View.INVISIBLE) {
+            mStackActionButton.setVisibility(View.VISIBLE);
+            mStackActionButton.setAlpha(0f);
+            if (translate) {
+                mStackActionButton.setTranslationY(-mStackActionButton.getMeasuredHeight() * 0.25f);
+            } else {
+                mStackActionButton.setTranslationY(0f);
+            }
+            postAnimationTrigger.addLastDecrementRunnable(new Runnable() {
+                @Override
+                public void run() {
+                    if (translate) {
+                        mStackActionButton.animate()
+                            .translationY(0f);
+                    }
+                    mStackActionButton.animate()
+                            .alpha(1f)
+                            .setDuration(duration)
+                            .setInterpolator(Interpolators.FAST_OUT_SLOW_IN)
+                            .start();
+                }
+            });
+        }
+        postAnimationTrigger.flushLastDecrementRunnables();
     }
 
     /**
      * Hides the stack action button.
      */
     private void hideStackActionButton(int duration, boolean translate) {
-        return;
+        if (!RecentsDebugFlags.Static.EnableStackActionButton) {
+            return;
+        }
+
+        final ReferenceCountedTrigger postAnimationTrigger = new ReferenceCountedTrigger();
+        hideStackActionButton(duration, translate, postAnimationTrigger);
+        postAnimationTrigger.flushLastDecrementRunnables();
     }
 
     /**
@@ -696,7 +689,29 @@ public class RecentsView extends FrameLayout {
      */
     private void hideStackActionButton(int duration, boolean translate,
                                        final ReferenceCountedTrigger postAnimationTrigger) {
-        return;
+        if (!RecentsDebugFlags.Static.EnableStackActionButton) {
+            return;
+        }
+
+        if (mStackActionButton.getVisibility() == View.VISIBLE) {
+            if (translate) {
+                mStackActionButton.animate()
+                    .translationY(-mStackActionButton.getMeasuredHeight() * 0.25f);
+            }
+            mStackActionButton.animate()
+                    .alpha(0f)
+                    .setDuration(duration)
+                    .setInterpolator(Interpolators.FAST_OUT_SLOW_IN)
+                    .withEndAction(new Runnable() {
+                        @Override
+                        public void run() {
+                            mStackActionButton.setVisibility(View.INVISIBLE);
+                            postAnimationTrigger.decrement();
+                        }
+                    })
+                    .start();
+            postAnimationTrigger.increment();
+        }
     }
 
     /**
