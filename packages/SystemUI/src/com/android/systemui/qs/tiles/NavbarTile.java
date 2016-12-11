@@ -101,7 +101,7 @@ public class NavbarTile extends QSTile<QSTile.BooleanState> {
 
     @Override
     public int getMetricsCategory() {
-        return MetricsEvent.ABC_QS;
+        return MetricsEvent.ABC;
     }
 
     @Override

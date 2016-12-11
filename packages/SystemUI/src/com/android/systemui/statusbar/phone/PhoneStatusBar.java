@@ -2835,8 +2835,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
 
         mExpandedVisible = true;
-        if (mNavigationBarView != null && mNavigationBarAttached)
-            mNavigationBarView.setSlippery(true);
 
         // Expand the window to encompass the full screen in anticipation of the drag.
         // This is only possible to do atomically because the status bar is at the top of the screen!
@@ -2975,8 +2973,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mNotificationPanel.closeQs();
 
         mExpandedVisible = false;
-        if (mNavigationBarView != null && mNavigationBarAttached)
-            mNavigationBarView.setSlippery(false);
 
         visibilityChanged(false);
 
