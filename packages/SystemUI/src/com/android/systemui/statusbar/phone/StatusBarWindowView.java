@@ -774,7 +774,7 @@ public class StatusBarWindowView extends FrameLayout {
             mDoubleTapToSleepEnabled = Settings.System.getIntForUser(
                     resolver, Settings.System.DOUBLE_TAP_SLEEP_GESTURE, 1, UserHandle.USER_CURRENT) == 1;
             mDozeWakeupDoubleTap = Settings.System.getIntForUser(
-                    resolver, Settings.System.DOUBLE_TAP_WAKE_DOZE, 0, UserHandle.USER_CURRENT) == 1;
+                    resolver, Settings.System.DOUBLE_TAP_WAKE_DOZE, 1, UserHandle.USER_CURRENT) == 1;
         }
     }
 }
