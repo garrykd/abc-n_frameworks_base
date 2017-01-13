@@ -114,4 +114,9 @@
     <string name="ime_right">IME Right</string>
     <string name="accessibility_ime_right">IME Right button</string>
 
+    <!-- Ambient display and lift gesture Tile -->
+    <string name="quick_settings_doze_notifications_label">Doze notifications</string>
+    <string name="quick_settings_doze_notifications_user">Doze notifications</string>
+    <string name="quick_settings_doze_notifications_off">No doze notifications</string>
+
 </resources>
