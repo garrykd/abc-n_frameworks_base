@@ -15,6 +15,8 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Navbar tuner -->
+    <string name="navbar_tuner_title">Navbar tuner</string>
     <!-- statusbar items tuner -->
     <string name="statusbar_icons_blacklist">Status bar icons</string>
     <!-- notification controls -->
