@@ -489,7 +489,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     boolean mHasSoftInput = false;
     boolean mTranslucentDecorEnabled = true;
     boolean mUseTvRouting;
-
+    boolean mVolumeRockerWake;
+    boolean mVolBtnMusicControls;
+    boolean mIsLongPress;
     int mBackKillTimeout;
 
     int mPointerLocationMode = 0; // guarded by mLock
