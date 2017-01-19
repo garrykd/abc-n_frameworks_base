@@ -61,7 +61,6 @@ import com.android.systemui.qs.tiles.IntentTile;
 import com.android.systemui.qs.tiles.LocationTile;
 import com.android.systemui.qs.tiles.NightDisplayTile;
 import com.android.systemui.qs.tiles.NavbarTile;
-import com.android.systemui.qs.tiles.NfcTile;
 import com.android.systemui.qs.tiles.RotationLockTile;
 import com.android.systemui.qs.tiles.VolumeTile;
 import com.android.systemui.qs.tiles.UserTile;
@@ -449,7 +448,6 @@ public class QSTileHost implements QSTile.Host, Tunable {
         else if (tileSpec.equals("reboot")) return new RebootTile(this);
         else if (tileSpec.equals("sound")) return new SoundTile(this);
         else if (tileSpec.equals("volume")) return new VolumeTile(this);
-        else if (tileSpec.equals("nfc")) return new NfcTile(this);
         else if (tileSpec.equals("adb_network")) return new AdbOverNetworkTile(this);
         else if (tileSpec.equals("androidauto")) return new AndroidAutoTile(this);
         else if (tileSpec.equals("ambient")) return new AmbientLiftToWakeTile(this);

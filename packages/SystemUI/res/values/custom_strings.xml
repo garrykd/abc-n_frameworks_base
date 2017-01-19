@@ -54,16 +54,6 @@
      <!-- Volume QS Tile -->
      <string name="accessibility_quick_settings_volume_panel">Volume</string>
      <string name="quick_settings_volume_panel_label">Volume</string>
-    <!-- Nfc qs tile -->
-    <string name="quick_settings_nfc_label">NFC</string>
-    <!-- Content description of the NFC tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
-    <string name="accessibility_quick_settings_nfc_off">NFC off.</string>
-    <!-- Content description of the NFC tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
-    <string name="accessibility_quick_settings_nfc_on">NFC on.</string>
-    <!-- Announcement made when NFC changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
-    <string name="accessibility_quick_settings_nfc_changed_off">NFC turned off.</string>
-    <!-- Announcement made when NFC changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
-    <string name="accessibility_quick_settings_nfc_changed_on">NFC turned on.</string>
     <!-- ADB network tile -->
     <string name="quick_settings_adb_network">ADB network</string>
     <string name="quick_settings_network_adb_enabled_label">Enabled</string>
