@@ -42,4 +42,10 @@
     <string name="quick_settings_doze_notifications_label">Notifiche doze</string>
     <string name="quick_settings_doze_notifications_user">Notifiche doze</string>
     <string name="quick_settings_doze_notifications_off">No notifiche doze</string>
+    
+    <string name="quick_settings_location_detail_title">Geolocalizzazione</string>
+    <string name="quick_settings_location_battery_saving_label">Basso consumo</string>
+    <string name="quick_settings_location_gps_only_label">Solo dispositivo</string>
+    <string name="quick_settings_location_high_accuracy_label">Alta precisione</string>
+    <string name="quick_settings_location_off_label">Geolocalizzazione off</string>
 </resources>
