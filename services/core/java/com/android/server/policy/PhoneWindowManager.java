@@ -1348,8 +1348,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 }
                 KeyguardManager km = (KeyguardManager) mContext.getSystemService(Context.KEYGUARD_SERVICE);
                 boolean locked = km.inKeyguardRestrictedInputMode();
-                boolean globalActionsOnLockScreen = Settings.System.getInt(
-                        mContext.getContentResolver(), Settings.System.POWER_MENU_LOCKSCREEN, 1) == 1;
+                boolean globalActionsOnLockScreen = Settings.System.getIntForUser(
+                        mContext.getContentResolver(), Settings.System.POWER_MENU_LOCKSCREEN, 1, UserHandle.USER_CURRENT) == 1;
                 if (locked && !globalActionsOnLockScreen) {
                     behavior = LONG_PRESS_POWER_NOTHING;
                 } else {
