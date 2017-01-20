@@ -112,12 +112,6 @@ final class DefaultPermissionGrantPolicy {
         LOCATION_PERMISSIONS.add(Manifest.permission.ACCESS_COARSE_LOCATION);
     }
 
-    private static final Set<String> MANAGE_USERS_PERMISSIONS = new ArraySet<>();
-    static {
-             MANAGE_USERS_PERMISSIONS.add("android.permission.INTERACT_ACROSS_USERS");
-             MANAGE_USERS_PERMISSIONS.add("android.permission.MANAGE_USERS") ;
-    }
-
     private static final Set<String> CALENDAR_PERMISSIONS = new ArraySet<>();
     static {
         CALENDAR_PERMISSIONS.add(Manifest.permission.READ_CALENDAR);
@@ -759,7 +753,6 @@ final class DefaultPermissionGrantPolicy {
             if (gsfcorePackage != null && doesPackageSupportRuntimePermissions(gsfcorePackage)) {
                 grantRuntimePermissionsLPw(gsfcorePackage, CONTACTS_PERMISSIONS, userId);
                 grantRuntimePermissionsLPw(gsfcorePackage, PHONE_PERMISSIONS, userId);
-               grantRuntimePermissionsLPw(gsfcorePackage, MANAGE_USERS_PERMISSIONS, userId);
             }
 
             // Google Setup Wizard
