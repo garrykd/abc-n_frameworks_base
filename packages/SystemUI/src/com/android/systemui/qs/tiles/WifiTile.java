@@ -215,7 +215,7 @@ public class WifiTile extends QSTile<QSTile.SignalState> {
 
     public boolean isWiFiEasyToggleEnabled() {
         return Settings.Secure.getInt(mContext.getContentResolver(),
-                Settings.Secure.QS_WIFI_EASY_TOGGLE, 0) == 1;
+                Settings.Secure.QS_EASY_TOGGLE, 0) == 1;
     }
 
     @Override

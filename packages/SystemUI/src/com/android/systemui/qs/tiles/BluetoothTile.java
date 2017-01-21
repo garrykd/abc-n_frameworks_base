@@ -182,7 +182,7 @@ public class BluetoothTile extends QSTile<QSTile.BooleanState>  {
 
     public boolean isBtEasyToggleEnabled() {
         return Settings.Secure.getInt(mContext.getContentResolver(),
-            Settings.Secure.QS_BT_EASY_TOGGLE, 0) == 1;
+            Settings.Secure.QS_EASY_TOGGLE, 0) == 1;
     }
 
     @Override
