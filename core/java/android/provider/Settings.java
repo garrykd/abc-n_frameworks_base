@@ -3968,6 +3968,12 @@ public final class Settings {
         public static final String DASHBOARD_COLUMNS = "dashboard_columns";
 
         /**
+         * Whether to show dashboard summaries in a single line or not
+         * @hide
+         */
+        public static final String DASHBOARD_SUMMARY_DOUBLE_LINES = "dashboard_summary_double_lines";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
