@@ -3968,19 +3968,6 @@ public final class Settings {
         public static final String VOLUME_LINK_NOTIFICATION = "volume_link_notification";
 
         /**
-         * Dashboard columns in settings
-         * Disable dashboard conditions in settings
-         * @hide
-         */
-        public static final String DISABLE_DASHBOARD_CONDITIONS = "disable_dashboard_conditions";
-
-        /**
-         * Disable dashboard suggestions in settings
-         * @hide
-         */
-        public static final String DISABLE_SUGGESTIONS = "disable_suggestions";
-
-        /**
          * Dashboard portrait columns in settings
          * @hide
          */
