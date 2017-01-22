@@ -3690,6 +3690,12 @@ public final class Settings {
          * @hide
          */
 
+         /**
+         *  Enable navigation bar double tap gesture on to put device to sleep
+         * @hide
+         */
+        public static final String DOUBLE_TAP_SLEEP_NAVBAR = "double_tap_sleep_navbar";
+
         /**
          * Show or hide clock
          * 0 - hide
