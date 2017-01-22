@@ -3969,15 +3969,34 @@ public final class Settings {
 
         /**
          * Dashboard columns in settings
+         * Disable dashboard conditions in settings
          * @hide
          */
-        public static final String DASHBOARD_COLUMNS = "dashboard_columns";
+        public static final String DISABLE_DASHBOARD_CONDITIONS = "disable_dashboard_conditions";
 
         /**
-         * Whether to show dashboard summaries in a single line or not
+         * Disable dashboard suggestions in settings
          * @hide
          */
-        public static final String DASHBOARD_SUMMARY_DOUBLE_LINES = "dashboard_summary_double_lines";
+        public static final String DISABLE_SUGGESTIONS = "disable_suggestions";
+
+        /**
+         * Dashboard portrait columns in settings
+         * @hide
+         */
+        public static final String DASHBOARD_PORTRAIT_COLUMNS = "dashboard_portrait_columns";
+
+        /**
+         * Dashboard landscape columns in settings
+         * @hide
+         */
+        public static final String DASHBOARD_LANDSCAPE_COLUMNS = "dashboard_landscape_columns";
+
+        /**
+         * Remove dashboard tile summaries in settings
+         * @hide
+         */
+        public static final String REMOVE_TILE_SUMMARY = "remove_tile_summary";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
