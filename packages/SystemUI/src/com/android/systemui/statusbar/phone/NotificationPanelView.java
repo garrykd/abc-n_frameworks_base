@@ -875,10 +875,6 @@ public class NotificationPanelView extends PanelView implements
         final int pointerCount = event.getPointerCount();
         final int action = event.getActionMasked();
 
-        final boolean oneFingerDrag = action == MotionEvent.ACTION_DOWN
-                && mOneFingerQuickSettingsIntercept && shouldQuickSettingsIntercept
-                        (event.getX(), event.getY(), -1, false);
-
         final boolean twoFingerDrag = action == MotionEvent.ACTION_POINTER_DOWN
                 && pointerCount == 2;
 
@@ -890,7 +886,17 @@ public class NotificationPanelView extends PanelView implements
                 && (event.isButtonPressed(MotionEvent.BUTTON_SECONDARY)
                         || event.isButtonPressed(MotionEvent.BUTTON_TERTIARY));
 
-        return !isQsSecureExpandDisabled() && (oneFingerDrag || twoFingerDrag || stylusButtonClickDrag || mouseButtonClickDrag);
+        final float w = getMeasuredWidth();
+        final float x = event.getX();
+        float region = w * 1.f / 4.f; // TODO overlay region fraction?
+        boolean showQsOverride = false;
+
+        if (mOneFingerQuickSettingsIntercept) {
+                showQsOverride = isLayoutRtl() ? x < region : w - region < x;
+        }
+        showQsOverride &= mStatusBarState == StatusBarState.SHADE;
+
+        return !isQsSecureExpandDisabled() && (showQsOverride || twoFingerDrag || stylusButtonClickDrag || mouseButtonClickDrag);
     }
 
     private void handleQsDown(MotionEvent event) {
@@ -1417,30 +1423,18 @@ public class NotificationPanelView extends PanelView implements
      * @return Whether we should intercept a gesture to open Quick Settings.
      */
     private boolean shouldQuickSettingsIntercept(float x, float y, float yDiff) {
-        return shouldQuickSettingsIntercept(x, y, yDiff, true);
-    }
-
-    /**
-     * @return Whether we should intercept a gesture to open Quick Settings.
-     */
-    private boolean shouldQuickSettingsIntercept(float x, float y, float yDiff, boolean useHeader) {
-        if (!mQsExpansionEnabled) {
+        if (!mQsExpansionEnabled || mCollapsedOnDown) {
             return false;
         }
         View header = mKeyguardShowing ? mKeyguardStatusBar : mQsContainer.getHeader();
-        boolean onHeader = useHeader && x >= mQsAutoReinflateContainer.getX()
+        boolean onHeader = x >= mQsAutoReinflateContainer.getX()
                 && x <= mQsAutoReinflateContainer.getX() + mQsAutoReinflateContainer.getWidth()
                 && y >= header.getTop() && y <= header.getBottom();
-
-        final float w = (header.getX() + header.getWidth());
-        float region = (w * (1.f/3.f)); // TODO overlay region fraction?
-
-        boolean showQsOverride = isLayoutRtl() ? (x < region) : (w - region < x);
 
         if (mQsExpanded) {
             return onHeader || (yDiff < 0 && isInQsArea(x, y));
         } else {
-            return onHeader || (showQsOverride && mStatusBarState == StatusBarState.SHADE);
+            return onHeader;
         }
     }
 
