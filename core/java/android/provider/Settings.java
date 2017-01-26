@@ -3887,12 +3887,6 @@ public final class Settings {
          public static final String SWAP_VOLUME_BUTTONS = "swap_volume_buttons";
 
         /**
-         * Whether to disable ripple on lockscreen pin entry
-         * @hide
-         */
-        public static final String LOCKSCREEN_PIN_RIPPLE = "lockscreen_pin_ripple";
-
-        /**
          * Whether to scramble a pin unlock layout
          * @hide
          */
