@@ -53,4 +53,9 @@
     <add-resource type="bool" name="config_supportHighBrightness"></add-resource>
     <bool name="config_supportHighBrightness">false</bool>
 
+    <!-- The duration (in milliseconds) of recent app screen animation. -->
+    <integer name="config_recentDefaultDur">300</integer>
+
+    <!-- The duration (in milliseconds) of recent app screen exit animation. -->
+    <integer name="config_recentExitDur">450</integer>
 </resources>
