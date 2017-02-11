@@ -22,7 +22,6 @@
 
     <string name="quick_settings_adb_network">ADB su rete</string>
     <string name="quick_settings_network_adb_enabled_label">Attivo</string>
-    <string name="quick_settings_network_adb_disabled_label">Disattivato</string>
 
     <string name="quick_settings_caffeine_label">Caffeina</string>
     <string name="accessibility_quick_settings_caffeine_off">Caffeina off</string>
@@ -40,12 +39,10 @@
     <string name="quick_settings_navigation_bar">Barra di navigazione</string>
 
     <string name="quick_settings_doze_notifications_label">Notifiche doze</string>
-    <string name="quick_settings_doze_notifications_user">Notifiche doze</string>
-    <string name="quick_settings_doze_notifications_off">No notifiche doze</string>
-    
+
     <string name="quick_settings_location_detail_title">Geolocalizzazione</string>
     <string name="quick_settings_location_battery_saving_label">Basso consumo</string>
     <string name="quick_settings_location_gps_only_label">Solo dispositivo</string>
     <string name="quick_settings_location_high_accuracy_label">Alta precisione</string>
-    <string name="quick_settings_location_off_label">Geolocalizzazione off</string>
+    <string name="quick_settings_location_off_custom_label">Geolocalizzazione</string>
 </resources>
