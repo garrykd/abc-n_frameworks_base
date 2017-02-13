@@ -45,4 +45,6 @@
     <string name="quick_settings_location_gps_only_label">Solo dispositivo</string>
     <string name="quick_settings_location_high_accuracy_label">Alta precisione</string>
     <string name="quick_settings_location_off_custom_label">Geolocalizzazione</string>
+
+    <string name="quick_settings_high_brightness">Ultra luminosità</string>
 </resources>
