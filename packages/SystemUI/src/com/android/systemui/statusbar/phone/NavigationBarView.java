@@ -402,7 +402,7 @@ public class NavigationBarView extends LinearLayout {
             getHomeButton().setImageDrawable(mHomeDefaultIcon);
         }
 
-        final boolean showImeButton = ((hints & StatusBarManager.NAVIGATION_HINT_IME_SHOWN) != 0);
+        final boolean showImeButton = hints != 0;
         getImeSwitchButton().setVisibility(showImeButton ? View.VISIBLE : View.INVISIBLE);
         getImeSwitchButton().setImageDrawable(mImeIcon);
 
@@ -516,7 +516,7 @@ public class NavigationBarView extends LinearLayout {
 
         // Only show Menu if IME switcher not shown.
         final boolean shouldShow = mShowMenu &&
-                ((mNavigationIconHints & StatusBarManager.NAVIGATION_HINT_IME_SHOWN) == 0);
+                mNavigationIconHints == 0;
 
         getMenuButton().setVisibility(shouldShow ? View.VISIBLE : View.INVISIBLE);
     }
