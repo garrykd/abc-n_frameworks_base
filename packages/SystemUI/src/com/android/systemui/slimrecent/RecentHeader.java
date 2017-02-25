@@ -127,13 +127,13 @@ public class RecentHeader extends CardHeader {
         }
         int defaultCardText = mContext.getResources().getColor(
                 R.color.card_text_color_header);
-        int textColor = Settings.System.getIntForUser(mContext.getContentResolver(),
+        /*int textColor = Settings.System.getIntForUser(mContext.getContentResolver(),
                 Settings.System.RECENT_CARD_TEXT_COLOR,
-                0x00ffffff, UserHandle.USER_CURRENT);
+                0x00ffffff, UserHandle.USER_CURRENT);*/
         holder.textView.setText(mLabel);
-        if (textColor == 0x00ffffff) {
+        //if (textColor == 0x00ffffff) {
             textColor = getDefaultTextColor();
-        }
+        //}
         holder.textView.setTextColor(textColor);
         if (holder.expandButton != null) {
             holder.expandButton.setColorFilter(textColor);
