@@ -47,4 +47,8 @@
     <string name="quick_settings_location_off_custom_label">Geolocalizzazione</string>
 
     <string name="quick_settings_high_brightness">Ultra luminosità</string>
+
+    <string name="recents_multiwin_warning">Una sessione multifinestra è già attiva.\nTappa su una app se vuoi aprirla nell\'altra metà dello schermo.</string>
+
+    <string name="recents_multiwin_nolastapp">Hai rimosso tutti i recenti, seleziona una app dalla home o il drawer.</string>
 </resources>
