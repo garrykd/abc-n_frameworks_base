@@ -48,9 +48,9 @@ public class RecentHeader extends CardHeader {
     private int mHeaderHeight;
     private int mHeaderWidth;
     private float mHeaderTextSize;
+    private float mHeaderTextSizeBigPanel;
     private int mExpandedButtonWidth;
     private float mScaleFactor;
-    private boolean mScaleFactorChanged;
 
     public RecentHeader(Context context, TaskDescription td, float scaleFactor) {
         super(context);
@@ -69,7 +69,6 @@ public class RecentHeader extends CardHeader {
         mTaskDescription = td;
         mLabel = td.getLabel();
         if (scaleFactor != mScaleFactor) {
-            mScaleFactorChanged = true;
             mScaleFactor = scaleFactor;
             initDimensions();
         }
@@ -85,6 +84,8 @@ public class RecentHeader extends CardHeader {
                 R.dimen.recent_header_width) * mScaleFactor);
         mHeaderTextSize = res.getDimensionPixelSize(
                 R.dimen.recent_text_size) * mScaleFactor;
+        mHeaderTextSizeBigPanel = res.getDimensionPixelSize(
+                R.dimen.recent_text_size);
     }
 
     /**
@@ -110,20 +111,19 @@ public class RecentHeader extends CardHeader {
             holder.expandButton = (ImageButton) ((View)view.getParent().getParent())
                     .findViewById(R.id.card_header_button_expand);
             // Take scale factor into account if it is different then default or it has changed.
-            if (mScaleFactor != RecentController.DEFAULT_SCALE_FACTOR || mScaleFactorChanged) {
-                mScaleFactorChanged = false;
+
+            if (mScaleFactor < RecentController.DEFAULT_SCALE_FACTOR) {
                 int diff = 0;
                 // We have on static element in the header (expanded icon button). Take this into
                 // account to calculate the needed width.
-                if (mScaleFactor < RecentController.DEFAULT_SCALE_FACTOR) {
-                    diff = (int) ((mExpandedButtonWidth
-                            - mExpandedButtonWidth * mScaleFactor) * 2);
-                }
+                diff = (int) ((mExpandedButtonWidth - mExpandedButtonWidth * mScaleFactor) * 2);
                 final ViewGroup.LayoutParams layoutParams = holder.textView.getLayoutParams();
                 layoutParams.width = mHeaderWidth - diff;
                 layoutParams.height = mHeaderHeight;
                 holder.textView.setLayoutParams(layoutParams);
                 holder.textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mHeaderTextSize);
+            } else {
+                holder.textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mHeaderTextSizeBigPanel);
             }
             view.setTag(holder);
         }
