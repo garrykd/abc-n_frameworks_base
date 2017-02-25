@@ -33,6 +33,8 @@ import com.android.cards.internal.CardHeader;
 import com.android.systemui.R;
 import com.android.systemui.recents.misc.Utilities;
 
+import android.graphics.Typeface;
+
 /**
  * This class handles the header view.
  */
@@ -132,8 +134,10 @@ public class RecentHeader extends CardHeader {
                 0x00ffffff, UserHandle.USER_CURRENT);*/
         holder.textView.setText(mLabel);
         //if (textColor == 0x00ffffff) {
-            textColor = getDefaultTextColor();
+            int textColor = getDefaultTextColor();
         //}
+        Typeface font = Typeface.create("sans-serif-condensed", Typeface.BOLD);
+        holder.textView.setTypeface(font);
         holder.textView.setTextColor(textColor);
         if (holder.expandButton != null) {
             holder.expandButton.setColorFilter(textColor);
