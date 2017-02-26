@@ -41,7 +41,6 @@
             android:stackFromBottom="true"
             android:scrollbars="none"
             android:overScrollMode="never"
-            android:smoothScrollbar="true"
             android:background="@android:color/transparent"
             android:cacheColorHint="@android:color/transparent"
             android:fitsSystemWindows="true"
