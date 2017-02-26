@@ -34,12 +34,14 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.VectorDrawable;
 import android.graphics.PixelFormat;
+import android.graphics.Point;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.RemoteException;
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
@@ -176,8 +178,7 @@ public class RecentController implements RecentPanelView.OnExitListener,
                 (CardRecyclerView) mRecentContainer.findViewById(R.id.recent_list);
 
         cardRecyclerView.setHasFixedSize(true);
-
-        LinearLayoutManager llm = new LinearLayoutManager(context);
+        CacheMoreCardsLayoutManager llm = new CacheMoreCardsLayoutManager(context, mWindowManager);
         llm.setReverseLayout(true);
         cardRecyclerView.setLayoutManager(llm);
 
@@ -821,5 +822,29 @@ public class RecentController implements RecentPanelView.OnExitListener,
             }
         }
    }
+
+    private class CacheMoreCardsLayoutManager extends LinearLayoutManager {
+        private Context context;
+        private WindowManager mWindowManager;
+
+        public CacheMoreCardsLayoutManager(Context context, WindowManager windowManager) {
+            super(context);
+            this.context = context;
+            this.mWindowManager = windowManager;
+        }
+
+        @Override
+        protected int getExtraLayoutSpace(RecyclerView.State state) {
+            return getScreenHeight();
+        }
+
+        private int getScreenHeight() {
+            Display display = mWindowManager.getDefaultDisplay();
+            Point size = new Point();
+            display.getSize(size);
+            int screenHeight = size.y;
+            return screenHeight;
+        }
+    }
 
 }
