@@ -37,7 +37,6 @@ import android.graphics.PixelFormat;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.RemoteException;
-import android.os.SystemClock;
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.support.v7.widget.LinearLayoutManager;
@@ -49,7 +48,6 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener;
-import android.view.ViewConfiguration;
 import android.view.WindowManager;
 import android.view.WindowManagerGlobal;
 import android.view.View;
@@ -355,8 +353,6 @@ public class RecentController implements RecentPanelView.OnExitListener,
             setGravityAndImageResources();
         }
 
-        long elapsedTime = SystemClock.elapsedRealtime() - mLastToggleTime;
-
         if (mAnimationState == ANIMATION_STATE_NONE) {
             if (!isShowing()) {
                 mIsToggled = true;
@@ -373,7 +369,6 @@ public class RecentController implements RecentPanelView.OnExitListener,
                     if (DEBUG) Log.d(TAG, "preload was not called - do it now");
                     preloadRecentTasksList();
                 }
-                mLastToggleTime = SystemClock.elapsedRealtime();
             } else {
                 hideRecents(false);
             }
