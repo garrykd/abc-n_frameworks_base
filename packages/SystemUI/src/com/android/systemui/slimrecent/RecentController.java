@@ -175,6 +175,8 @@ public class RecentController implements RecentPanelView.OnExitListener,
         final CardRecyclerView cardRecyclerView =
                 (CardRecyclerView) mRecentContainer.findViewById(R.id.recent_list);
 
+        cardRecyclerView.setHasFixedSize(true);
+
         LinearLayoutManager llm = new LinearLayoutManager(context);
         llm.setReverseLayout(true);
         cardRecyclerView.setLayoutManager(llm);
