@@ -61,7 +61,7 @@ public class RecentExpandedCard extends CardExpand {
     private boolean mScaleFactorChanged;
 
     private int defaultCardBg;
-    private int cardColor;
+    //private int cardColor;
 
     private BitmapDownloaderTask mTask;
 
@@ -93,9 +93,9 @@ public class RecentExpandedCard extends CardExpand {
 
         defaultCardBg = mContext.getResources().getColor(
                 R.color.recents_task_bar_default_background_color);
-        cardColor = Settings.System.getIntForUser(
+        /*cardColor = Settings.System.getIntForUser(
                 mContext.getContentResolver(), Settings.System.RECENT_CARD_BG_COLOR,
-                defaultCardBg, UserHandle.USER_CURRENT);
+                defaultCardBg, UserHandle.USER_CURRENT);*/
 
         initDimensions();
     }
@@ -204,11 +204,11 @@ public class RecentExpandedCard extends CardExpand {
         }
 
         // set custom background
-        if (cardColor != 0x00ffffff) {
+        /*if (cardColor != 0x00ffffff) {
             parent.setBackgroundColor(cardColor);
-        } else {
+        } else {*/
             parent.setBackgroundColor(getDefaultCardColorBg());
-        }
+        //}
     }
 
     static class ViewHolder {

@@ -4072,7 +4072,7 @@ public final class Settings {
          *
          * @hide
          */
-        public static final String RECENT_CARD_BG_COLOR = "recent_card_bg_color";
+        //public static final String RECENT_CARD_BG_COLOR = "recent_card_bg_color";
 
         /**
          * Recent card text color
