@@ -254,8 +254,9 @@ public class RecentCard extends Card {
                     try {
                         ActivityManagerNative.getDefault()
                                 .startActivityFromRecents(mPersistentTaskId, options.toBundle());
+                        RecentController.sendCloseSystemWindows("close_recents");
                     } catch (RemoteException e) {}
-                    return; 
+                    return;
                 }
                 if (intent != null) {
                     RecentController.sendCloseSystemWindows("close_recents");
