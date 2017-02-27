@@ -148,7 +148,6 @@ import com.android.systemui.recents.events.EventBus;
 import com.android.systemui.recents.events.activity.AppTransitionFinishedEvent;
 import com.android.systemui.recents.events.activity.UndockingTaskEvent;
 import com.android.systemui.slimrecent.RecentController;
-import com.android.systemui.slimrecent.SlimScreenPinningRequest;
 import com.android.systemui.stackdivider.Divider;
 import com.android.systemui.stackdivider.WindowManagerProxy;
 import com.android.systemui.statusbar.ActivatableNotificationView;
@@ -427,8 +426,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private HandlerThread mHandlerThread;
 
     private RecentController mSlimRecents;
-
-    private SlimScreenPinningRequest mSlimScreenPinningRequest;
 
 
     // ensure quick settings is disabled until the current user makes it through the setup wizard
@@ -931,8 +928,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                         R.id.keyguard_indication_text),
                 mKeyguardBottomArea.getLockIcon());
         mKeyguardBottomArea.setKeyguardIndicationController(mKeyguardIndicationController);
-
-        mSlimScreenPinningRequest = new SlimScreenPinningRequest(mContext);
 
         // set the initial view visibility
         setAreThereNotifications();
@@ -4970,7 +4965,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
     public void showScreenPinningRequest(int taskId, boolean allowCancel) {
         hideRecents(false, false);
-        //mSlimScreenPinningRequest.showPrompt(taskId, allowCancel);
         mScreenPinningRequest.showPrompt(taskId, allowCancel);
     }
 
