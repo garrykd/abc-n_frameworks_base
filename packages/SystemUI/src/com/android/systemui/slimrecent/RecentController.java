@@ -291,7 +291,8 @@ public class RecentController implements RecentPanelView.OnExitListener,
         mEmptyRecentView.setImageResource(0);
 
         // Set correct backgrounds based on calculated main gravity.
-        mRecentWarningContent.setBackgroundColor(Color.RED);
+        int warningColor = mContext.getResources().getColor(R.color.recent_warning_background);
+        mRecentWarningContent.setBackgroundColor(warningColor);
 
         int tintColor = getEmptyRecentColor();
         int backgroundColor = mPanelColor;
@@ -738,7 +739,7 @@ public class RecentController implements RecentPanelView.OnExitListener,
                 final boolean hasFavorite = mRecentPanelView.hasFavorite();
 
                 // Setup animation for warning content - fade out.
-                ValueAnimator animation1 = ValueAnimator.ofFloat(1.0f, 0.0f);
+                ValueAnimator animation1 = ValueAnimator.ofFloat(0.7f, 0.0f);
                 animation1.setDuration(ANIMATION_FADE_OUT_DURATION);
                 animation1.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
@@ -794,7 +795,7 @@ public class RecentController implements RecentPanelView.OnExitListener,
                     public void onAnimationEnd(Animator animation) {
                         // Animation is finished. Prepare warning content for next call.
                         mRecentWarningContent.setVisibility(View.GONE);
-                        mRecentWarningContent.setAlpha(1.0f);
+                        mRecentWarningContent.setAlpha(0.7f);
                         // Remove all tasks now.
                         if (mRecentPanelView.removeAllApplications()) {
                             // Prepare listview for next recent call.
