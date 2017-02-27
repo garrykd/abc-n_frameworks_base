@@ -707,7 +707,7 @@ public class RecentPanelView {
                     mContext.getSystemService(Context.ACTIVITY_SERVICE);
 
             int maxNumTasksToLoad = Settings.System.getIntForUser(mContext.getContentResolver(),
-                    Settings.System.RECENTS_MAX_APPS, ActivityManager.getMaxRecentTasksStatic(),
+                    Settings.System.RECENTS_MAX_APPS, 15,
                     UserHandle.USER_CURRENT);
 
             final List<ActivityManager.RecentTaskInfo> recentTasks =
