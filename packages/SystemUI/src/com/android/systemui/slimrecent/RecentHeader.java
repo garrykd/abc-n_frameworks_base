@@ -127,15 +127,8 @@ public class RecentHeader extends CardHeader {
             }
             view.setTag(holder);
         }
-        //int defaultCardText = mContext.getResources().getColor(
-                //R.color.card_text_color_header);
-        /*int textColor = Settings.System.getIntForUser(mContext.getContentResolver(),
-                Settings.System.RECENT_CARD_TEXT_COLOR,
-                0x00ffffff, UserHandle.USER_CURRENT);*/
         holder.textView.setText(mLabel);
-        //if (textColor == 0x00ffffff) {
-            int textColor = getDefaultTextColor();
-        //}
+        int textColor = getDefaultTextColor();
         Typeface font = Typeface.create("sans-serif-condensed", Typeface.BOLD);
         holder.textView.setTypeface(font);
         holder.textView.setTextColor(textColor);

@@ -682,9 +682,6 @@ public class RecentPanelView {
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            // Save current thread priority and set it during the loading
-            // to background priority.
-            //mOrigPri = Process.getThreadPriority(Process.myTid());
             Process.setThreadPriority(Process.THREAD_PRIORITY_FOREGROUND);
 
             final int oldSize = mCards.size();
@@ -892,9 +889,6 @@ public class RecentPanelView {
             if (!loaded) {
                 Log.v(TAG, "card constructing was cancelled by system or user");
             }
-
-            // Restore original thread priority.
-            //Process.setThreadPriority(mOrigPri);
 
             // Set correct view visibilitys
             setVisibility();

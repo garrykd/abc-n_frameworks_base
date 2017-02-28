@@ -93,9 +93,6 @@ public class RecentExpandedCard extends CardExpand {
 
         defaultCardBg = mContext.getResources().getColor(
                 R.color.recents_task_bar_default_background_color);
-        /*cardColor = Settings.System.getIntForUser(
-                mContext.getContentResolver(), Settings.System.RECENT_CARD_BG_COLOR,
-                defaultCardBg, UserHandle.USER_CURRENT);*/
 
         initDimensions();
     }
@@ -203,12 +200,7 @@ public class RecentExpandedCard extends CardExpand {
             }
         }
 
-        // set custom background
-        /*if (cardColor != 0x00ffffff) {
-            parent.setBackgroundColor(cardColor);
-        } else {*/
-            parent.setBackgroundColor(getDefaultCardColorBg());
-        //}
+        parent.setBackgroundColor(getDefaultCardColorBg());
     }
 
     static class ViewHolder {
@@ -318,9 +310,6 @@ public class RecentExpandedCard extends CardExpand {
         protected Bitmap doInBackground(Integer... params) {
             mLoaded = false;
             mLRUCacheKey = null;
-            // Save current thread priority and set it during the loading
-            // to background priority.
-            //mOrigPri = Process.getThreadPriority(Process.myTid());
             Process.setThreadPriority(Process.THREAD_PRIORITY_FOREGROUND);
             if (isCancelled() || rContext == null) {
                 return null;
@@ -335,8 +324,6 @@ public class RecentExpandedCard extends CardExpand {
             if (isCancelled()) {
                 bitmap = null;
             }
-            // Restore original thread priority.
-            //Process.setThreadPriority(mOrigPri);
 
             // Assign image to the view.
             if (rImageViewReference != null) {
