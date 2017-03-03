@@ -29,8 +29,7 @@ LOCAL_STATIC_JAVA_LIBRARIES := \
     android-support-v17-leanback \
     framework-protos \
     SystemUI-proto-tags \
-    android-support-v7-cardview \
-    android-opt-cards
+    android-support-v7-cardview
 
 LOCAL_JAVA_LIBRARIES := telephony-common
 
@@ -48,13 +47,11 @@ LOCAL_RESOURCE_DIR := \
     frameworks/support/v7/appcompat/res \
     frameworks/support/v7/recyclerview/res \
     frameworks/support/v17/leanback/res \
-    frameworks/support/v7/cardview/res \
-    frameworks/opt/cards/res
+    frameworks/support/v7/cardview/res
 
 LOCAL_AAPT_FLAGS := --auto-add-overlay \
     --extra-packages com.android.keyguard:android.support.v7.recyclerview:android.support.v7.preference:android.support.v14.preference:android.support.v7.appcompat \
-    --extra-packages android.support.v17.leanback:android.support.v7.cardview \
-    --extra-packages com.android.cards
+    --extra-packages android.support.v17.leanback:android.support.v7.cardview
 
 ifneq ($(SYSTEM_UI_INCREMENTAL_BUILDS),)
     LOCAL_PROGUARD_ENABLED := disabled
