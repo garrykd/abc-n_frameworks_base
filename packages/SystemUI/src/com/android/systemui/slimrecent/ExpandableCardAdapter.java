@@ -41,10 +41,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.os.UserHandle;
 
 import java.util.ArrayList;
 
-import com.android.internal.utils.du.ActionHandler;
+import com.android.internal.util.abc.ActionUtils;
 import com.android.systemui.R;
 
 public class ExpandableCardAdapter extends RecyclerView.Adapter<ExpandableCardAdapter.ViewHolder> {
@@ -103,7 +104,7 @@ public class ExpandableCardAdapter extends RecyclerView.Adapter<ExpandableCardAd
             holder.expandButton.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    ActionHandler.performTask(mContext, ActionHandler.SYSTEMUI_TASK_KILL_PROCESS);
+                    ActionUtils.killForegroundApp(mContext, UserHandle.USER_CURRENT);
                     removeCard(position);
 
                     return true;
