@@ -1301,7 +1301,7 @@ public class RecentPanelView {
 
     // Resize and crop the task bitmap to the overlay values.
     private static Bitmap getResizedBitmap(Bitmap source, Context context, float scaleFactor) {
-        if (source == null || source.isRecycled()) {
+        if (source == null || (source != null && source.isRecycled())) {
             return null;
         }
 
