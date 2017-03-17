@@ -50,9 +50,9 @@ import com.android.systemui.R;
 
 public class ExpandableCardAdapter extends RecyclerView.Adapter<ExpandableCardAdapter.ViewHolder> {
 
-    private Context mContext;
+    public Context mContext;
 
-    private ArrayList<ExpandableCard> mCards = new ArrayList<>();
+    public ArrayList<ExpandableCard> mCards = new ArrayList<>();
 
     public ExpandableCardAdapter(Context context) {
         mContext = context;
@@ -104,7 +104,7 @@ public class ExpandableCardAdapter extends RecyclerView.Adapter<ExpandableCardAd
             holder.expandButton.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    ActionUtils.killForegroundApp(mContext, UserHandle.USER_CURRENT);
+                    ActionUtils.killProcess(mContext);
                     removeCard(position);
 
                     return true;
