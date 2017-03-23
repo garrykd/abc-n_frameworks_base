@@ -50,9 +50,9 @@ import com.android.systemui.R;
 
 public class ExpandableCardAdapter extends RecyclerView.Adapter<ExpandableCardAdapter.ViewHolder> {
 
-    public Context mContext;
+    private Context mContext;
 
-    public ArrayList<ExpandableCard> mCards = new ArrayList<>();
+    private ArrayList<ExpandableCard> mCards = new ArrayList<>();
 
     public ExpandableCardAdapter(Context context) {
         mContext = context;
