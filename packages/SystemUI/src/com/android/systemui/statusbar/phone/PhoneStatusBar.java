@@ -3940,6 +3940,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         updateRowStates();
         mScreenPinningRequest.onConfigurationChanged();
         mNetworkController.onConfigurationChanged();
+        if (mSlimRecents != null) {
+            mSlimRecents.onConfigurationChanged(newConfig);
+        }
     }
 
     @Override
