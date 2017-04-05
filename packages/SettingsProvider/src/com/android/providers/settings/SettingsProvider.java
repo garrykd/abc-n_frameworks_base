@@ -2439,6 +2439,17 @@ public class SettingsProvider extends ContentProvider {
                                     R.bool.def_high_brightness_Mode) ? "1" : "0",
                             SettingsState.SYSTEM_PACKAGE_NAME);
 
+                    // Initialize new multi-press timeout to default value
+                    final SettingsState systemSecureSettings = getSecureSettingsLocked(userId);
+                    final String oldValue = systemSecureSettings.getSettingLocked(
+                            Settings.Secure.MULTI_PRESS_TIMEOUT).getValue();
+                    if (TextUtils.equals(null, oldValue)) {
+                        systemSecureSettings.insertSettingLocked(
+                                Settings.Secure.MULTI_PRESS_TIMEOUT,
+                                String.valueOf(getContext().getResources().getInteger(
+                                        R.integer.def_multi_press_timeout_millis)),
+                                SettingsState.SYSTEM_PACKAGE_NAME);
+                    }
                     currentVersion = 132;
                 }
 
