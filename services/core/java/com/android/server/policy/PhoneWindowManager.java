@@ -773,7 +773,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private static final int MSG_BACK_LONG_PRESS = 18;
     private static final int MSG_DISPOSE_INPUT_CONSUMER = 19;
     private static final int MSG_BACK_DELAYED_PRESS = 20;
-    private static final int MSG_DISPATCH_VOLKEY_WITH_WAKE_LOCK = 20;
+    private static final int MSG_DISPATCH_VOLKEY_WITH_WAKE_LOCK = 21;
 
     private static final int MSG_REQUEST_TRANSIENT_BARS_ARG_STATUS = 0;
     private static final int MSG_REQUEST_TRANSIENT_BARS_ARG_NAVIGATION = 1;
