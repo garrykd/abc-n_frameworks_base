@@ -536,6 +536,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             mContext.getContentResolver().registerContentObserver(Settings.System.getUriFor(
                   Settings.System.STATUSBAR_CLOCK_STYLE),
                   false, this, UserHandle.USER_ALL);
+            mContext.getContentResolver().registerContentObserver(Settings.System.getUriFor(
+                  Settings.System.QS_FOOTER_WARNINGS),
+                  false, this, UserHandle.USER_ALL);
             updateAll();
         }
 
@@ -572,7 +575,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         if (mNotificationPanel != null) {
             mNotificationPanel.updateSettings();
         }
-
         mClockLocation = Settings.System.getIntForUser(mContext.getContentResolver(),
                 Settings.System.STATUSBAR_CLOCK_STYLE, 0, UserHandle.USER_CURRENT);
     }
