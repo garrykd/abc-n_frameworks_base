@@ -16,9 +16,6 @@
 -->
 
 <resources>
-    <!-- Status bar battery level text color -->
-    <color name="status_bar_battery_level_text_color">#ffffff</color>
-
     <!-- Navigation button ripple color -->
     <color name="navbutton_ripple_color">#FFFFFFFF</color>
 
@@ -74,8 +71,6 @@
 
     <color name="screenshot_flash_color">#4D3367d6</color>
     <color name="screenshot_background_color">#ff000000</color>
-
-    <color name="batterymeter_frame_color_darkintensity">@color/dark_mode_icon_color_dual_tone_background</color>
 
     <!-- Separate QS text label tint from icon tint -->
     <color name="qs_tile_label_tint_unavailable">@color/qs_tile_tint_unavailable</color>
