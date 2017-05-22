@@ -540,6 +540,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             mContext.getContentResolver().registerContentObserver(Settings.System.getUriFor(
                   Settings.System.QS_FOOTER_WARNINGS),
                   false, this, UserHandle.USER_ALL);
+            mContext.getContentResolver().registerContentObserver(Settings.System.getUriFor(
+                  Settings.System.AMBIENT_DOZE_CUSTOM_BRIGHTNESS),
+                  false, this, UserHandle.USER_ALL);
             updateAll();
         }
 
@@ -578,6 +581,11 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
         mClockLocation = Settings.System.getIntForUser(mContext.getContentResolver(),
                 Settings.System.STATUSBAR_CLOCK_STYLE, 0, UserHandle.USER_CURRENT);
+        int defaultDozeBrightness = mContext.getResources().getInteger(
+                com.android.internal.R.integer.config_screenBrightnessDoze);
+        int customDozeBrightness = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.AMBIENT_DOZE_CUSTOM_BRIGHTNESS, defaultDozeBrightness, UserHandle.USER_CURRENT);
+        StatusBarWindowManager.updateSbCustomBrightnessDozeValue(customDozeBrightness);
     }
 
     private SettingsObserver mObserver = new SettingsObserver(mHandler);
