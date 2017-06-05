@@ -4119,6 +4119,12 @@ public final class Settings {
         public static final String SLIM_RECENTS_ICON_PACK = "slim_recents_icon_pack";
 
         /**
+         * Wheter to use corner radius for Slim Recents cards
+         * @hide
+         */
+        public static final String SLIM_RECENTS_CORNER_RADIUS = "slim_recents_corner_radius";
+
+        /**
          * Whether to show QS footer warnings
          * @hide
          */
