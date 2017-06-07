@@ -552,14 +552,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
 
         @Override
-        public void onChange(boolean selfChange) {
-            updateAll();
-            if (mQSPanel != null) {
-                updateResources();
-            }
-        }
-
-        @Override
         public void onChange(boolean selfChange, Uri uri) {
             if (uri.equals(Settings.Secure.getUriFor(
                     Settings.Secure.NAVIGATION_BAR_VISIBLE))) {
@@ -575,24 +567,27 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             }
             updateAll();
         }
-    }
 
-    private void updateAll() {
-        if (mHeader != null) {
-            mHeader.updateSettings();
+        private void updateAll() {
+            if (mHeader != null) {
+                mHeader.updateSettings();
+            }
+            if (mNotificationPanel != null) {
+                mNotificationPanel.updateSettings();
+            }
+            if (mQSPanel != null) {
+                mQSPanel.updateResources();
+            }
+            mClockLocation = Settings.System.getIntForUser(mContext.getContentResolver(),
+                    Settings.System.STATUSBAR_CLOCK_STYLE, 0, UserHandle.USER_CURRENT);
+            int defaultDozeBrightness = mContext.getResources().getInteger(
+                    com.android.internal.R.integer.config_screenBrightnessDoze);
+            int customDozeBrightness = Settings.System.getIntForUser(mContext.getContentResolver(),
+                    Settings.System.AMBIENT_DOZE_CUSTOM_BRIGHTNESS, defaultDozeBrightness, UserHandle.USER_CURRENT);
+            StatusBarWindowManager.updateSbCustomBrightnessDozeValue(customDozeBrightness);
+            mFingerprintQuickPulldown =  Settings.System.getIntForUser(mContext.getContentResolver(),
+                    Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN_FP, 0, UserHandle.USER_CURRENT) == 1;
         }
-        if (mNotificationPanel != null) {
-            mNotificationPanel.updateSettings();
-        }
-        mClockLocation = Settings.System.getIntForUser(mContext.getContentResolver(),
-                Settings.System.STATUSBAR_CLOCK_STYLE, 0, UserHandle.USER_CURRENT);
-        int defaultDozeBrightness = mContext.getResources().getInteger(
-                com.android.internal.R.integer.config_screenBrightnessDoze);
-        int customDozeBrightness = Settings.System.getIntForUser(mContext.getContentResolver(),
-                Settings.System.AMBIENT_DOZE_CUSTOM_BRIGHTNESS, defaultDozeBrightness, UserHandle.USER_CURRENT);
-        StatusBarWindowManager.updateSbCustomBrightnessDozeValue(customDozeBrightness);
-        mFingerprintQuickPulldown =  Settings.System.getIntForUser(mContext.getContentResolver(),
-                Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN_FP, 0, UserHandle.USER_CURRENT) == 1;
     }
 
     private SettingsObserver mObserver = new SettingsObserver(mHandler);
