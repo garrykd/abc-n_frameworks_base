@@ -268,7 +268,7 @@ public class NetworkTraffic extends TextView {
         ConnectivityManager connManager =
                 (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo network = (connManager != null) ? connManager.getActiveNetworkInfo() : null;
-        return network != null && network.isConnected();
+        return network != null;
     }
 
 
